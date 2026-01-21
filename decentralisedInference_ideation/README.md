@@ -68,13 +68,19 @@ A mesh network of 16 ESP32 nodes, each with environmental sensors and LoRa radio
 
 **Conceptual foundations:** Complete (this documentation)
 
-**Immediate next actions:**
-1. Memory budget validation (profile ESP32-S3 + Meshtastic)
-2. 2-bit quantization testing (assess quality degradation)
-3. Single-node prototype (prove inference works on one device)
-4. FabAcademy proposal review (ensure fits requirements)
+**BREAKTHROUGH (2026-01-21):** Sensor→steering transformation solved. It's scalar multiplication using EXP005 morphogens, not a complex mapping problem. This changes the project from speculative to implementable.
 
-**See:** [04_OPEN_QUESTIONS.md](04_OPEN_QUESTIONS.md) §"Implementation Challenges"
+**Immediate next actions:**
+1. **Sensor validation (Week 1):** Test `sound_pressure × morphogen_turbulent` on laptop with microphone
+2. **Measure correlation:** Does loud sound → turbulent tokens? (Need r > 0.7)
+3. Memory budget validation (profile ESP32-S3 + Meshtastic)
+4. 2-bit quantization testing (assess quality degradation)
+5. FabAcademy proposal review (ensure fits requirements)
+
+**See:** 
+- [intialIdea.md](intialIdea.md) §"Idea 2" for breakthrough explanation
+- [01_DETAILED_CONCEPTS.md](01_DETAILED_CONCEPTS.md) §"Sensor-to-Steering Transformation" for math
+- [04_OPEN_QUESTIONS.md](04_OPEN_QUESTIONS.md) §"Question 4" for validation experiments
 
 ---
 

@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decentralised LLM Inference - Interactive Visualization</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-bg: #0a0e27;
+            --secondary-bg: #1a1f3a;
+            --accent-bg: #2a3154;
+            --text-primary: #e0e6ed;
+            --text-secondary: #a0aec0;
+            --accent-blue: #4299e1;
+            --accent-cyan: #0bc5ea;
+            --accent-green: #48bb78;
+            --border-color: #2d3748;
+            --hover-bg: #2d3748;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--primary-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 300px;
+            background: var(--secondary-bg);
+            border-right: 2px solid var(--border-color);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: var(--secondary-bg);
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: var(--accent-bg);
+            border-radius: 4px;
+        }
+
+        .sidebar-header {
+            padding: 2rem 1.5rem;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .sidebar-header h1 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .sidebar-header p {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.4;
+        }
+
+        .nav-section {
+            padding: 1.5rem 1rem;
+        }
+
+        .nav-section-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            padding-left: 0.5rem;
+        }
+
+        .nav-item {
+            display: block;
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.25rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-item:hover {
+            background: var(--hover-bg);
+            border-left-color: var(--accent-cyan);
+            transform: translateX(3px);
+        }
+
+        .nav-item.active {
+            background: var(--accent-bg);
+            border-left-color: var(--accent-blue);
+            color: white;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 300px;
+            flex: 1;
+            padding: 3rem;
+            max-width: 1400px;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        .diagram-container {
+            background: var(--secondary-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .diagram-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--accent-cyan);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .diagram-title::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: linear-gradient(180deg, var(--accent-blue), var(--accent-cyan));
+            border-radius: 2px;
+        }
+
+        .mermaid {
+            background: var(--primary-bg);
+            border-radius: 8px;
+            padding: 2rem;
+            overflow-x: auto;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: var(--accent-bg);
+            color: var(--accent-cyan);
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-left: 1rem;
+        }
+
+        /* Overview Section */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .overview-card {
+            background: var(--secondary-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .overview-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(66, 153, 225, 0.2);
+        }
+
+        .overview-card h3 {
+            color: var(--accent-cyan);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .overview-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .metric:last-child {
+            border-bottom: none;
+        }
+
+        .metric-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .metric-value {
+            color: var(--accent-cyan);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 2rem 1rem;
+            }
+
+            .toggle-sidebar {
+                display: block;
+            }
+        }
+
+        .toggle-sidebar {
+            display: none;
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 1001;
+            background: var(--accent-blue);
+            color: white;
+            border: none;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 4rem;
+            padding: 2rem 0;
+            border-top: 2px solid var(--border-color);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .footer a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <button class="toggle-sidebar" onclick="toggleSidebar()">☰ Menu</button>
+
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h1>Decentralised LLM Inference</h1>
+                <p>Interactive System Architecture Visualisation</p>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Overview</div>
+                <a class="nav-item active" data-section="overview">System Overview</a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Workflows</div>
+                <a class="nav-item" data-section="workflow1">Token Computation Flow</a>
+                <a class="nav-item" data-section="workflow2">Sensor Pipeline</a>
+                <a class="nav-item" data-section="workflow3">Gateway Processing</a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">System Architecture</div>
+                <a class="nav-item" data-section="system1">Mesh Network Architecture</a>
+                <a class="nav-item" data-section="system2">Hardware Components</a>
+                <a class="nav-item" data-section="system3">Three-Layer Model</a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Data Models</div>
+                <a class="nav-item" data-section="data1">Node Data Structure</a>
+                <a class="nav-item" data-section="data2">Message/Packet Structure</a>
+                <a class="nav-item" data-section="data3">Sensor Schema</a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Relationships</div>
+                <a class="nav-item" data-section="relationship1">Conceptual Mappings</a>
+                <a class="nav-item" data-section="relationship2">Variant Trade-offs</a>
+                <a class="nav-item" data-section="relationship3">Environment Coupling</a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Overview Section -->
+            <section class="section active" id="overview">
+                <div class="section-header">
+                    <h2>System Overview</h2>
+                    <p>A mesh network of sensor-equipped microcontrollers, each computing one attention head of a distributed LLM, where environmental sensor readings act as steering vectors to couple the model's linguistic output to physical reality.</p>
+                </div>
+
+                <div class="overview-grid">
+                    <div class="overview-card">
+                        <h3>Core Architecture</h3>
+                        <p>16 ESP32-S3 nodes connected via LoRa mesh network, each computing one attention head with environmental sensor integration.</p>
+                        <div style="margin-top: 1rem;">
+                            <div class="metric">
+                                <span class="metric-label">Nodes</span>
+                                <span class="metric-value">16</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Layers</span>
+                                <span class="metric-value">22</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Heads per Layer</span>
+                                <span class="metric-value">16</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="overview-card">
+                        <h3>Performance Characteristics</h3>
+                        <p>Intentionally slow inference operating at educational visualization timescales, enabling observation of distributed cognition.</p>
+                        <div style="margin-top: 1rem;">
+                            <div class="metric">
+                                <span class="metric-label">Token Generation Time</span>
+                                <span class="metric-value">5-15 min</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">LoRa Latency</span>
+                                <span class="metric-value">1-2 sec</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Packet Size</span>
+                                <span class="metric-value">230 bytes</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="overview-card">
+                        <h3>Hardware Substrate</h3>
+                        <p>Embedded microcontrollers with constrained resources requiring aggressive quantization and memory optimization.</p>
+                        <div style="margin-top: 1rem;">
+                            <div class="metric">
+                                <span class="metric-label">Node RAM</span>
+                                <span class="metric-value">512KB PSRAM</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Weights per Node</span>
+                                <span class="metric-value">~1MB (2-bit)</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">KV Cache</span>
+                                <span class="metric-value">131KB</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="overview-card">
+                        <h3>Semantic Coupling</h3>
+                        <p>Environmental sensors transform physical reality into latent space steering vectors, coupling computation to the material world.</p>
+                        <div style="margin-top: 1rem;">
+                            <div class="metric">
+                                <span class="metric-label">Steering Dimension</span>
+                                <span class="metric-value">2048</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Sensor Types</span>
+                                <span class="metric-value">4+ modalities</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Alpha Coefficient</span>
+                                <span class="metric-value">0.1-1.0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="diagram-container">
+                    <div class="diagram-title">Project Philosophy</div>
+                    <div style="padding: 1.5rem; background: var(--primary-bg); border-radius: 8px; border-left: 4px solid var(--accent-cyan);">
+                        <p style="font-size: 1.1rem; font-style: italic; color: var(--text-primary); margin-bottom: 1rem;">
+                            "Not a distributed chatbot. A mechanical brain that thinks at geological speeds."
+                        </p>
+                        <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7;">
+                            This project reframes the "slowness" of LoRa communication from a limitation to a feature, operating at timescales that make invisible computation visible. It explores consciousness across temporal scales, embodied inference through environmental sensors, and distributed cognition without centralized control.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Workflow 1: Token Computation Flow -->
+            <section class="section" id="workflow1">
+                <div class="section-header">
+                    <h2>Per-Layer Token Computation Flow<span class="badge">Workflow</span></h2>
+                    <p>Sequential process showing how a single token is generated through the distributed mesh network across 22 layers, from prompt input through layer-by-layer computation to final token output.</p>
+                </div>
+
+                <div class="diagram-container">
+                    <div class="diagram-title">Sequence Diagram: Token Generation</div>
+                    <div class="mermaid">
+sequenceDiagram
+    participant User
+    participant Gateway
+    participant LoRaMesh as LoRa Mesh Network
+    participant Node1 as Node 1 (Head 1)
+    participant Node2 as Node 2 (Head 2)
+    participant NodeN as Node N (Head 16)
+    participant Env1 as Environment 1
+    participant EnvN as Environment N
+
+    User->>Gateway: Submit prompt
+    Gateway->>Gateway: Initialize layer counter (1/22)
+    
+    loop For each of 22 layers
+        Note over Gateway: Encode hidden state (2048 floats → 2KB)
+        Gateway->>LoRaMesh: Broadcast hidden state (9 packets)
+        LoRaMesh->>Node1: Deliver state
+        LoRaMesh->>Node2: Deliver state
+        LoRaMesh->>NodeN: Deliver state
+        
+        par Parallel Node Computation
+            Env1->>Node1: Sensor readings (sound)
+            Node1->>Node1: Compute Q, K, V projections
+            Node1->>Node1: Attention(Q, K, V) + steering
+            Node1->>LoRaMesh: Return 128 bytes
+        and
+            Node2->>Node2: Compute Q, K, V projections
+            Node2->>Node2: Attention(Q, K, V) + steering
+            Node2->>LoRaMesh: Return 128 bytes
+        and
+            EnvN->>NodeN: Sensor readings (light)
+            NodeN->>NodeN: Compute Q, K, V projections
+            NodeN->>NodeN: Attention(Q, K, V) + steering
+            NodeN->>LoRaMesh: Return 128 bytes
+        end
+        
+        LoRaMesh->>Gateway: Collect all 16 head outputs
+        Gateway->>Gateway: Concatenate heads → full layer
+        Gateway->>Gateway: Apply feed-forward network
+        Gateway->>Gateway: Increment layer counter
+    end
+    
+    Gateway->>Gateway: Generate token from final layer
+    Gateway->>User: Return token
+    Note over Gateway,User: Time per token: 5-15 minutes
+                    </div>
+                </div>
+
+                <div class="diagram-container">
+                    <div class="diagram-title">Key Characteristics</div>
+                    <div class="overview-grid">
+                        <div class="overview-card">
+                            <h3>Message Passing</h3>
+                            <p>Gateway broadcasts 2KB hidden state fragmented into 9 LoRa packets. Each node receives identical state but computes different attention head.</p>
+                        </div>
+                        <div class="overview-card">
+                            <h3>Parallel Computation</h3>
+                            <p>All 16 nodes compute simultaneously in parallel, each processing their assigned attention head with local sensor integration.</p>
+                        </div>
+                        <div class="overview-card">
+                            <h3>Layer Iteration</h3>
+                            <p>Process repeats 22 times (one per transformer layer), with each iteration building upon the previous layer's output.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Workflow 2: Sensor Pipeline -->
+            <section class="section" id="workflow2">
+                <div class="section-header">
+                    <h2>Sensor-to-Steering-Vector Pipeline<span class="badge">Workflow</span></h2>
+                    <p>The transformation process from raw environmental sensor readings through normalisation and latent space transformation to integration with attention head outputs.</p>
+                </div>
+
+                <div class="diagram-container">
+                    <div class="diagram-title">Data Flow: Environment to Computation</div>
+                    <div class="mermaid">
+flowchart TD
+    A[Physical Environment] --> B[Environmental Sensors]
+    B --> C{Sensor Type}
+    
+    C -->|Sound| D1[Microphone<br/>Sound Pressure Level]
+    C -->|Motion| D2[Accelerometer<br/>Vibration Magnitude]
+    C -->|Light| D3[Light Sensor<br/>Luminosity]
+    C -->|Temperature| D4[Thermometer<br/>Temperature]
+    
+    D1 --> E1[Normalize 0-1]
+    D2 --> E2[Normalize 0-1]
+    D3 --> E3[Normalize 0-1]
+    D4 --> E4[Normalize 0-1]
+    
+    E1 --> F[Sensor Reading Dict]
+    E2 --> F
+    E3 --> F
+    E4 --> F
+    
+    F --> G[sensor_to_latent Function]
+    G --> H[Transform to 2048-dim vector]
+    
+    H --> I[Steering Vector]
+    I --> J[Scale by alpha coefficient]
+    
+    J --> K[Add to Attention Output]
+    K --> L[Modified Head Output]
+    
+    L --> M[Semantic Bias Applied]
+    
+    style A fill:#e1f5ff
+    style M fill:#ffe1e1
+    style I fill:#fff4e1
+                    </div>
+                </div>
+
+                <div class="diagram-container">
+                    <div class="diagram-title">Semantic Effects</div>
+                    <div class="overview-card">
+                        <h3>Environment-Token Coupling</h3>
+                        <div style="margin-top: 1rem;">
+                            <div class="metric">
+                                <span class="metric-label">Calm environment</span>
+                                <span class="metric-value">→ "peaceful", "stable"</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Loud environment</span>
+                                <span class="metric-value">→ "turbulent", "alert"</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Bright environment</span>
+                                <span class="metric-value">→ "illuminated", "visible"</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Dark environment</span>
+                                <span class="metric-value">→ "obscured", "hidden"</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Workflow 3: Gateway Processing -->
+            <section class="section" id="workflow3">
+                <div class="section-header">
+                    <h2>Gateway Node Processing Cycle<span class="badge">Workflow</span></h2>
+                    <p>The specific sequence of operations performed by the gateway node: receive prompt, broadcast state, aggregate outputs, apply feed-forward network, iterate through layers, return token.</p>
+                </div>
+
+                <div class="diagram-container">
+                    <div class="diagram-title">Gateway Control Flow</div>
+                    <div class="mermaid">
+flowchart TD
+    Start([Receive User Prompt]) --> Init[Initialize Layer Counter<br/>layer = 1]
+    Init --> Encode[Encode Hidden State<br/>2048 floats → 2KB]
+    
+    Encode --> Fragment[Fragment into LoRa Packets<br/>2KB → 9 packets]
+    Fragment --> Broadcast[Broadcast to All Nodes<br/>via LoRa Mesh]
+    
+    Broadcast --> Wait[Wait for Node Responses<br/>Collect 16 head outputs]
+    Wait --> Timeout{All Responses<br/>Received?}
+    
+    Timeout -->|No| Retry[Retry Missing Nodes]
+    Retry --> Wait
+    
+    Timeout -->|Yes| Concat[Concatenate 16 Head Outputs<br/>128 bytes × 16 = 2KB]
+    
+    Concat --> FFN[Apply Feed-Forward Network<br/>Layer normalization + MLP]
+    
+    FFN --> Check{Layer < 22?}
+    
+    Check -->|Yes| Increment[layer = layer + 1]
+    Increment --> Encode
+    
+    Check -->|No| Token[Generate Token<br/>from Final Layer Output]
+    
+    Token --> Update[Update KV Cache<br/>across all nodes]
+    Update --> Return([Return Token to User])
+    
+    style Start fill:#e1ffe1
+    style Return fill:#e1ffe1
+    style Broadcast fill:#ffe1e1
+    style FFN fill:#fff4e1
+                    </div>
+                </div>
+            </section>
+
+            <!-- System 1: Mesh Network Architecture -->
+            <section class="section" id="system1">
+                <div class="section-header">
+                    <h2>Overall Mesh Network Architecture<span class="badge">System</span></h2>
+                    <p>Complete system architecture showing gateway node, LoRa mesh network, 16 distributed compute nodes with their sensors, and environmental interactions.</p>
+                </div>
+
+                <div class="diagram-container">
+                    <div class="diagram-title">C4 Context: System Components</div>
+                    <div class="mermaid">
+C4Context
+    title Decentralised LLM Inference System Architecture
+
+    Person(user, "User", "Submits prompts and receives tokens")
+    
+    System_Boundary(system, "Distributed LLM System") {
+        System(gateway, "Gateway Node", "Orchestrates computation, aggregates outputs, applies FFN (Raspberry Pi / Laptop)")
+        
+        System(mesh, "LoRa Mesh Network", "230 bytes/packet, 1-2s latency, bidirectional communication")
+        
+        Container_Boundary(nodes, "Compute Nodes") {
+            Container(node1, "Node 1", "ESP32-S3", "Head 1, Sound Sensor")
+            Container(node2, "Node 2", "ESP32-S3", "Head 2, Vibration Sensor")
+            Container(node3, "Node 3", "ESP32-S3", "Head 3, Light Sensor")
+            Container(nodeN, "Node 16", "ESP32-S3", "Head 16, Temp Sensor")
+        }
+    }
+    
+    System_Ext(env, "Physical Environment", "Provides sensor inputs: sound, vibration, light, temperature")
+
+    Rel(user, gateway, "Submits prompt / Receives token", "Serial/WiFi")
+    Rel(gateway, mesh, "Broadcasts hidden state (2KB)", "LoRa")
+    Rel(mesh, node1, "Delivers state", "LoRa")
+    Rel(mesh, node2, "Delivers state", "LoRa")
+    Rel(mesh, node3, "Delivers state", "LoRa")
+    Rel(mesh, nodeN, "Delivers state", "LoRa")
+    
+    Rel(node1, mesh, "Returns 128 bytes", "LoRa")
+    Rel(node2, mesh, "Returns 128 bytes", "LoRa")
+    Rel(node3, mesh, "Returns 128 bytes", "LoRa")
+    Rel(nodeN, mesh, "Returns 128 bytes", "LoRa")
+    Rel(mesh, gateway, "Aggregates outputs", "LoRa")
+    
+    Rel(env, node1, "Sound pressure", "Physical")
+    Rel(env, node2, "Vibration", "Physical")
+    Rel(env, node3, "Luminosity", "Physical")
+    Rel(env, nodeN, "Temperature", "Physical")
+
+    UpdateRelStyle(user, gateway, $offsetX="-50", $offsetY="-10")
+    UpdateRelStyle(gateway, mesh, $offsetX="-70", $offsetY="-10")
+                    </div>
+                </div>
+            </section>
+
+            <!-- System 2: Hardware Components -->
+            <section class="section" id="system2">
+                <div class="section-header">
+                    <h2>Hardware Component Architecture<span class="badge">System</span></h2>
+                    <p>Physical hardware components including ESP32-S3 microcontrollers, LoRa radios, environmental sensors, and gateway device, with their technical constraints annotated.</p>
+                </div>
+
+                <div class="diagram-container">
+                    <div class="diagram-title">C4 Component: Hardware Substrate</div>
+                    <div class="mermaid">
+C4Component
+    title Hardware Substrate Components and Constraints
+
+    Container_Boundary(gateway_hw, "Gateway Hardware") {
+        Component(gw_cpu, "Raspberry Pi 4 / Laptop", "Processor", "Multi-core CPU, 4-8GB RAM")
+        Component(gw_lora, "LoRa Transceiver", "SX1276/SX1262", "Gateway radio module")
+        Component(gw_interface, "User Interface", "Serial/WiFi", "Prompt input, token output")
+    }
+    
+    Container_Boundary(node_hw, "Node Hardware (×16)") {
+        Component(mcu, "ESP32-S3", "Microcontroller", "RAM: 512KB PSRAM, Flash: 8MB")
+        Component(lora, "LoRa Radio", "SX1276/SX1262", "230 bytes/packet, 1-2s latency")
+        Component(sensors, "Environmental Sensors", "I2C/SPI", "Microphone, Accelerometer, Light, Temp")
+        Component(power, "Power System", "Battery/Solar", "Autonomous operation")
+        Component(storage, "Flash Storage", "SPIFFS/LittleFS", "Model weights: ~1MB (2-bit quant)")
+    }
+    
+    Container_Boundary(network_hw, "Network Infrastructure") {
+        Component(mesh_protocol, "LoRa Mesh Protocol", "RadioHead/Meshtastic", "Multi-hop routing, collision avoidance")
+    }
+
+    Rel(gw_cpu, gw_lora, "Controls", "SPI")
+    Rel(gw_lora, mesh_protocol, "Transmits/Receives", "LoRa PHY")
+    
+    Rel(mcu, lora, "Controls", "SPI")
+    Rel(mcu, sensors, "Reads data", "I2C/ADC")
+    Rel(mcu, storage, "Loads weights", "SPI Flash")
+    Rel(mcu, power, "Powered by", "3.3V")
+    
+    Rel(lora, mesh_protocol, "Participates in mesh", "LoRa PHY")
+    
+    UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
+                    </div>
+                </div>
+            </section>
+
+            <!-- System 3: Three-Layer Model -->
+            <section class="section" id="system3">
+                <div class="section-header">
+                    <h2>Three-Layer System Model<span class="badge">System</span></h2>
+                    <p>Hierarchical decomposition into Hardware Substrate, Computational Architecture, and Semantic Coupling layers, showing how different system concerns are organized and interact.</p>
+                </div>
+
+                <div class="diagram-container">
+                    <div class="diagram-title">Layered Architecture</div>
+                    <div class="mermaid">
+flowchart TB
+    subgraph Layer1["Layer 1: Hardware Substrate"]
+        direction LR
+        HW1[ESP32-S3 Microcontrollers]
+        HW2[LoRa Radios SX1276/SX1262]
+        HW3[Environmental Sensors]
+        HW4[Gateway Device]
+        
+        HW1 -.-> Constraint1[512KB PSRAM]
+        HW2 -.-> Constraint2[230 bytes/packet<br/>1-2s latency]
+        HW3 -.-> Constraint3[I2C/SPI interface]
+        HW4 -.-> Constraint4[Raspberry Pi / Laptop]
+    end
+    
+    subgraph Layer2["Layer 2: Computational Architecture"]
+        direction LR
+        COMP1[Head-Sharding Strategy]
+        COMP2[Attention Mechanism<br/>Q, K, V Projections]
+        COMP3[KV Cache Management<br/>131KB per head]
+        COMP4[Gateway Aggregation<br/>FFN Application]
+        
+        COMP1 -.-> Detail1[1MB weights per node<br/>2-bit quantization]
+        COMP2 -.-> Detail2[Per-layer computation]
+        COMP3 -.-> Detail3[512-token context]
+        COMP4 -.-> Detail4[16 heads → full layer]
+    end
+    
+    subgraph Layer3["Layer 3: Semantic Coupling"]
+        direction LR
+        SEM1[Sensor Reading Acquisition]
+        SEM2[Latent Space Transformation]
+        SEM3[Steering Vector Integration]
+        SEM4[Token Probability Modulation]
+        
+        SEM1 -.-> Effect1[Physical state input]
+        SEM2 -.-> Effect2[2048-dim vectors]
+        SEM3 -.-> Effect3[Add to attention output]
+        SEM4 -.-> Effect4[Environment-influenced tokens]
+    end
+    
+    Layer1 ==>|Provides Physical Substrate| Layer2
+    Layer2 ==>|Provides Computational Substrate| Layer3
+    Layer3 -.->|Influences Computation| Layer2
+    
+    style Layer1 fill:#e3f2fd
+    style Layer2 fill:#fff3e0
+    style Layer3 fill:#f1f8e9
+                    </div>
+                </div>
+            </section>
+
+            <!-- Data Model 1: Node Data Structure -->
+            <section class="section" id="data1">
+                <div class="section-header">
+                    <h2>Node Data Structure<span class="badge">Data Model</span></h2>
+                    <p>Internal node state including attention head weights (1MB), KV cache (131KB), Q/K/V projections, steering vectors, and 128-byte outputs.</p>
+                </div>
+
+                <div class="diagram-container">
+                    <div class="diagram-title">Class Diagram: Node Components</div>
+                    <div class="mermaid">
+classDiagram
+    class ComputeNode {
+        +int node_id
+        +int attention_head_id
+        +float[1MB] head_weights
+        +KVCache kv_cache
+        +SensorInterface sensors
+        +LoRaTransceiver radio
+        +compute_attention(hidden_state) HeadOutput
+        +update_kv_cache(k_vector, v_vector)
+        +get_sensor_steering() SteeringVector
+    }
+    
+    class KVCache {
+        +float[131KB] key_cache
+        +float[131KB] value_cache
+        +int context_length
+        +int max_tokens
+        +append(k, v)
+        +get_cached_kv() Tuple
+        +clear()
+    }
+    
+    class HeadWeights {
+        +float[2bit] query_weights
+        +float[2bit] key_weights
+        +float[2bit] value_weights
+        +float[2bit] output_weights
+        +int quantization_bits
+        +float weight_scale
+        +load_from_flash()
+    }
+    
+    class HiddenState {
+        +float[2048] values
+        +int dimension
+        +int layer_id
+        +bytes serialize()
+        +deserialize(bytes)
+    }
+    
+    class HeadOutput {
+        +float[128] values
+        +int head_id
+        +int layer_id
+        +bytes serialize()
+    }
+    
+    class SteeringVector {
+        +float[2048] values
+        +float alpha_coefficient
+        +SensorReadings source_readings
+        +transform_to_latent()
+        +apply_to_output(HeadOutput)
+    }
+    
+    class SensorReadings {
+        +float sound_pressure
+        +float vibration
+        +float light
+        +float temperature
+        +timestamp reading_time
+        +normalize()
+    }
+    
+    ComputeNode *-- KVCache
+    ComputeNode *-- HeadWeights
+    ComputeNode ..> HiddenState : receives
+    ComputeNode ..> HeadOutput : produces
+    ComputeNode ..> SteeringVector : applies
+    SteeringVector *-- SensorReadings
+                    </div>
+                </div>
+            </section>
+
+            <!-- Data Model 2: Message/Packet Structure -->
+            <section class="section" id="data2">
+                <div class="section-header">
+                    <h2>Message/Packet Structure<span class="badge">Data Model</span></h2>
+                    <p>Data packets flowing through the network: 2KB hidden state (9 packets), 128-byte head outputs, and LoRa packet structure with 230 bytes/packet limit.</p>
+                </div>
+
+                <div class="diagram-container">
+                    <div class="diagram-title">Entity-Relationship: Network Messages</div>
+                    <div class="mermaid">
+erDiagram
+    HIDDEN_STATE ||--o{ LORA_PACKET : "fragmented into"
+    LORA_PACKET ||--|| PACKET_HEADER : "contains"
+    LORA_PACKET ||--|| PACKET_PAYLOAD : "contains"
+    HEAD_OUTPUT ||--|| OUTPUT_PACKET : "serialized to"
+    OUTPUT_PACKET ||--|| PACKET_HEADER : "contains"
+    
+    HIDDEN_STATE {
+        int layer_id
+        float values[2048]
+        int total_size_bytes "2KB"
+        int sequence_number
+    }
+    
+    LORA_PACKET {
+        int packet_id
+        int sequence_num "1-9"
+        int total_packets "9"
+        bytes payload "~230 bytes"
+        int checksum
+    }
+    
+    PACKET_HEADER {
+        byte message_type "STATE/OUTPUT"
+        int source_node_id
+        int destination_node_id
+        int layer_id
+        int sequence_num
+        byte flags
+    }
+    
+    PACKET_PAYLOAD {
+        bytes data "max 230 bytes"
+        int data_length
+        int checksum
+    }
+    
+    HEAD_OUTPUT {
+        int head_id "1-16"
+        int layer_id "1-22"
+        float values[128]
+        int total_size_bytes "128 bytes"
+        timestamp computation_time
+    }
+    
+    OUTPUT_PACKET {
+        int head_id
+        int layer_id
+        bytes serialized_output "128 bytes"
+        int checksum
+        timestamp timestamp
+    }
+    
+    AGGREGATED_LAYER ||--|{ HEAD_OUTPUT : "composed of 16"
+    
+    AGGREGATED_LAYER {
+        int layer_id
+        float concatenated_heads[2048]
+        int num_heads "16"
+        timestamp completion_time
+    }
+                    </div>
+                </div>
+            </section>
+
+            <!-- Data Model 3: Sensor Schema -->
+            <section class="section" id="data3">
+                <div class="section-header">
+                    <h2>Sensor Reading Schema<span class="badge">Data Model</span></h2>
+                    <p>Environmental sensor data structure (sound, vibration, light, temperature) and their transformation pipeline to 2048-dimensional steering vectors.</p>
+                </div>
+
+                <div class="diagram-container">
+                    <div class="diagram-title">Class Diagram: Sensor Pipeline</div>
+                    <div class="mermaid">
+classDiagram
+    class EnvironmentalSensor {
+        <<interface>>
+        +read() float
+        +calibrate()
+        +get_units() string
+    }
+    
+    class MicrophoneSensor {
+        +float sensitivity
+        +int sample_rate
+        +read() float
+        +get_sound_pressure_level() float
+    }
+    
+    class AccelerometerSensor {
+        +float range_g
+        +int axis_count
+        +read() float
+        +get_vibration_magnitude() float
+        +get_xyz() Tuple
+    }
+    
+    class LightSensor {
+        +float max_lux
+        +read() float
+        +get_luminosity() float
+    }
+    
+    class TemperatureSensor {
+        +float min_temp
+        +float max_temp
+        +read() float
+        +get_celsius() float
+    }
+    
+    class SensorReadingAggregator {
+        +dict~string,EnvironmentalSensor~ sensors
+        +add_sensor(name, sensor)
+        +collect_all() SensorReadings
+        +normalize_readings() dict
+    }
+    
+    class LatentSpaceTransformer {
+        +int target_dimension "2048"
+        +float[2048,N] transformation_matrix
+        +transform(SensorReadings) SteeringVector
+        +load_weights()
+    }
+    
+    class SteeringVector {
+        +float[2048] latent_representation
+        +float alpha_coefficient "0.1-1.0"
+        +SensorReadings source_data
+        +add_to_attention(float[128]) float[128]
+    }
+    
+    class SensorReadings {
+        +float sound_pressure "0.0-1.0"
+        +float vibration "0.0-1.0"
+        +float light "0.0-1.0"
+        +float temperature "0.0-1.0"
+        +timestamp reading_time
+        +dict to_dict()
+    }
+    
+    EnvironmentalSensor <|-- MicrophoneSensor
+    EnvironmentalSensor <|-- AccelerometerSensor
+    EnvironmentalSensor <|-- LightSensor
+    EnvironmentalSensor <|-- TemperatureSensor
+    
+    SensorReadingAggregator o-- EnvironmentalSensor
+    SensorReadingAggregator ..> SensorReadings : produces
+    LatentSpaceTransformer ..> SensorReadings : consumes
+    LatentSpaceTransformer ..> SteeringVector : produces
+    SteeringVector *-- SensorReadings
+                    </div>
+                </div>
+            </section>
+
+            <!-- Relationship 1: Conceptual Mappings -->
+            <section class="section" id="relationship1">
+                <div class="section-header">
+                    <h2>Conceptual Mapping: Technical ↔ Biological ↔ Philosophical<span class="badge">Relationships</span></h2>
+                    <p>Cross-domain analogies showing how Transformer Architecture concepts, Mycelial Network biology, and Deleuzian philosophical frameworks interconnect and inform each other.</p>
+                </div>
+
+                <div class="diagram-container">
+                    <div class="diagram-title">Interdomain Concept Map</div>
+                    <div class="mermaid">
+flowchart TD
+    subgraph Technical["Technical Domain: Transformer Architecture"]
+        T1[Attention Heads]
+        T2[KV Cache]
+        T3[Steering Vectors]
+        T4[Aggregate Softmax]
+        T5[Distributed Model<br/>No Single Node Has Full Model]
+    end
+    
+    subgraph Biological["Biological Domain: Mycelial Network"]
+        B1[Hyphal Tips]
+        B2[Local Memory of<br/>Nutrient Gradients]
+        B3[Environmental<br/>Chemotaxis]
+        B4[Emergent Routing<br/>Decisions]
+        B5[No Central Brain<br/>Coordinates Network]
+    end
+    
+    subgraph Philosophical["Philosophical Domain: Deleuze & Framework"]
+        P1[Substrate<br/>That Which Affects and Is Affected]
+        P2[Organization<br/>Capacity for Affecting Patterns]
+        P3[Interface<br/>Differential Engagement]
+        P4[Assemblage<br/>Structure Producing Emergent Effects]
+        P5[Scale-Free Cognition<br/>Intentionality at Multiple Scales]
+    end
+    
+    T1 <-->|Structural Analogy| B1
+    T2 <-->|Functional Analogy| B2
+    T3 <-->|Behavioral Analogy| B3
+    T4 <-->|Emergent Property| B4
+    T5 <-->|Organizational Principle| B5
+    
+    T1 -.->|Instantiates| P1
+    T2 -.->|Instantiates| P2
+    T3 -.->|Instantiates| P3
+    T4 -.->|Instantiates| P4
+    T5 -.->|Instantiates| P5
+    
+    B1 -.->|Exemplifies| P1
+    B2 -.->|Exemplifies| P2
+    B3 -.->|Exemplifies| P3
+    B4 -.->|Exemplifies| P4
+    B5 -.->|Exemplifies| P5
+    
+    style Technical fill:#e3f2fd
+    style Biological fill:#e8f5e9
+    style Philosophical fill:#fff3e0
+                    </div>
+                </div>
+            </section>
+
+            <!-- Relationship 2: Variant Trade-offs -->
+            <section class="section" id="relationship2">
+                <div class="section-header">
+                    <h2>Project Variant Trade-offs<span class="badge">Relationships</span></h2>
+                    <p>Comparison of three implementation approaches: Full Council (16 nodes), Grouped Heads (4-6 nodes), and Agentic Mesh (3-5 nodes), with their complexity and capability trade-offs.</p>
+                </div>
+
+                <div class="diagram-container">
+                    <div class="diagram-title">Decision Tree: Implementation Variants</div>
+                    <div class="mermaid">
+flowchart TD
+    Start{Choose Implementation<br/>Variant}
+    
+    Start -->|Maximum Theatrics| A[Variant A: Full Council]
+    Start -->|Balanced Approach| B[Variant B: Grouped Heads]
+    Start -->|Practical Utility| C[Variant C: Agentic Mesh]
+    
+    A --> A1[16 Nodes]
+    A1 --> A2[1 Head per Node]
+    A2 --> A3[Complete Head-Sharding]
+    A3 --> A4{Trade-offs}
+    A4 --> A5[+ Maximum Visualization Effect]
+    A4 --> A6[+ Purest Distributed Architecture]
+    A4 --> A7[- Highest Complexity]
+    A4 --> A8[- Slowest Token Generation<br/>13-15 min/token]
+    A4 --> A9[- Most Hardware Required]
+    
+    B --> B1[4-6 Nodes]
+    B1 --> B2[3-5 Heads per Node]
+    B2 --> B3[Partial Head-Sharding]
+    B3 --> B4{Trade-offs}
+    B4 --> B5[+ Easier Debugging]
+    B4 --> B6[+ Faster Generation<br/>5-7 min/token]
+    B4 --> B7[+ Still Demonstrates Concept]
+    B4 --> B8[~ Moderate Complexity]
+    B4 --> B9[~ Less Theatrical]
+    
+    C --> C1[3-5 Nodes]
+    C1 --> C2[Role-Based Sharding]
+    C2 --> C3[Cognitive Function Distribution]
+    C3 --> C4{Roles}
+    C4 --> C41[Node 1: RAG Retrieval]
+    C4 --> C42[Node 2: Reasoning Model]
+    C4 --> C43[Node 3: Safety Filtering]
+    C4 --> C44[Node 4: Sensor Steering]
+    C3 --> C5{Trade-offs}
+    C5 --> C51[+ Easiest Implementation]
+    C5 --> C52[+ Most Practical Utility]
+    C5 --> C53[+ Agentic Workflow Benefits]
+    C5 --> C54[- Different Architecture<br/>Not Pure Head-Sharding]
+    C5 --> C55[- Less Educational for<br/>Transformer Internals]
+    
+    style A fill:#ffebee
+    style B fill:#fff3e0
+    style C fill:#e8f5e9
+    
+    style A5 fill:#c8e6c9
+    style A6 fill:#c8e6c9
+    style A7 fill:#ffcdd2
+    style A8 fill:#ffcdd2
+    style A9 fill:#ffcdd2
+    
+    style B5 fill:#c8e6c9
+    style B6 fill:#c8e6c9
+    style B7 fill:#c8e6c9
+    
+    style C51 fill:#c8e6c9
+    style C52 fill:#c8e6c9
+    style C53 fill:#c8e6c9
+                    </div>
+                </div>
+            </section>
+
+            <!-- Relationship 3: Environment Coupling -->
+            <section class="section" id="relationship3">
+                <div class="section-header">
+                    <h2>Node-to-Environment Coupling<span class="badge">Relationships</span></h2>
+                    <p>State diagram showing the bidirectional influence between distributed computation and physical environment, illustrating how nodes transition through sensing, computing, and integrating environmental data.</p>
+                </div>
+
+                <div class="diagram-container">
+                    <div class="diagram-title">State Machine: Node Computation Cycle</div>
+                    <div class="mermaid">
+stateDiagram-v2
+    [*] --> Idle: Node Initialized
+    
+    Idle --> WaitingForState: Gateway Broadcasts
+    
+    WaitingForState --> ReceivingState: LoRa Packets Arriving
+    ReceivingState --> ReceivingState: Accumulating Packets (1-9)
+    ReceivingState --> StateComplete: All Packets Received
+    
+    StateComplete --> SensingSurrounding: Activate Sensors
+    
+    state SensingSurrounding {
+        [*] --> ReadingSensors
+        ReadingSensors --> NormalizingData
+        NormalizingData --> [*]
+    }
+    
+    SensingSurrounding --> ComputingAttention
+    
+    state ComputingAttention {
+        [*] --> ProjectQKV: Q, K, V Projections
+        ProjectQKV --> RetrieveKVCache
+        RetrieveKVCache --> AttentionMechanism
+        AttentionMechanism --> [*]
+    }
+    
+    ComputingAttention --> TransformingSensors
+    
+    state TransformingSensors {
+        [*] --> LatentTransform: sensor_to_latent()
+        LatentTransform --> ScaleByAlpha
+        ScaleByAlpha --> [*]
+    }
+    
+    TransformingSensors --> IntegratingSteering: Add Steering Vector
+    IntegratingSteering --> SerializingOutput: Create 128-byte Output
+    SerializingOutput --> Transmitting: Broadcast via LoRa
+    
+    Transmitting --> UpdatingCache: Update Local KV Cache
+    UpdatingCache --> Idle: Ready for Next Layer
+    
+    state "Environmental Influence" as EnvInfluence
+    note right of SensingSurrounding
+        Physical environment
+        continuously sensed:
+        - Sound pressure
+        - Vibration
+        - Light levels
+        - Temperature
+    end note
+    
+    note right of IntegratingSteering
+        Environment shapes
+        token probabilities:
+        - Loud → "turbulent"
+        - Calm → "peaceful"
+        - Bright → "alert"
+        - Dark → "subdued"
+    end note
+    
+    Idle --> [*]: System Shutdown
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <div class="footer">
+                <p>Decentralised LLM Inference System Visualisation</p>
+                <p style="margin-top: 0.5rem;">Generated with thought-bubble | "Not a distributed chatbot. A mechanical brain that thinks at geological speeds."</p>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Initialize Mermaid
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            themeVariables: {
+                primaryColor: '#2a3154',
+                primaryTextColor: '#e0e6ed',
+                primaryBorderColor: '#4299e1',
+                lineColor: '#4299e1',
+                secondaryColor: '#1a1f3a',
+                tertiaryColor: '#0a0e27',
+                background: '#0a0e27',
+                mainBkg: '#1a1f3a',
+                secondBkg: '#2a3154',
+                textColor: '#e0e6ed',
+                fontSize: '14px',
+                nodeBorder: '#4299e1',
+                clusterBkg: '#1a1f3a',
+                clusterBorder: '#2d3748',
+                titleColor: '#e0e6ed',
+                edgeLabelBackground: '#1a1f3a',
+                actorBorder: '#4299e1',
+                actorBkg: '#2a3154',
+                actorTextColor: '#e0e6ed',
+                actorLineColor: '#4299e1',
+                signalColor: '#e0e6ed',
+                signalTextColor: '#e0e6ed',
+                labelBoxBkgColor: '#2a3154',
+                labelBoxBorderColor: '#4299e1',
+                labelTextColor: '#e0e6ed',
+                loopTextColor: '#e0e6ed',
+                noteBorderColor: '#4299e1',
+                noteBkgColor: '#2a3154',
+                noteTextColor: '#e0e6ed',
+                activationBorderColor: '#0bc5ea',
+                activationBkgColor: '#2a3154',
+                sequenceNumberColor: '#0a0e27'
+            },
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            },
+            sequence: {
+                useMaxWidth: true,
+                diagramMarginX: 50,
+                diagramMarginY: 10,
+                actorMargin: 50,
+                width: 150,
+                height: 65,
+                boxMargin: 10,
+                boxTextMargin: 5,
+                noteMargin: 10,
+                messageMargin: 35
+            },
+            class: {
+                useMaxWidth: true
+            },
+            er: {
+                useMaxWidth: true
+            },
+            state: {
+                useMaxWidth: true
+            }
+        });
+
+        // Navigation
+        const navItems = document.querySelectorAll('.nav-item');
+        const sections = document.querySelectorAll('.section');
+
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const targetSection = item.getAttribute('data-section');
+                
+                // Update active states
+                navItems.forEach(nav => nav.classList.remove('active'));
+                item.classList.add('active');
+                
+                // Show target section
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                    if (section.id === targetSection) {
+                        section.classList.add('active');
+                    }
+                });
+
+                // Close sidebar on mobile
+                if (window.innerWidth <= 1024) {
+                    document.getElementById('sidebar').classList.remove('open');
+                }
+
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        // Sidebar toggle for mobile
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', (e) => {
+            const sidebar = document.getElementById('sidebar');
+            const toggleBtn = document.querySelector('.toggle-sidebar');
+            
+            if (window.innerWidth <= 1024 && 
+                !sidebar.contains(e.target) && 
+                !toggleBtn.contains(e.target) &&
+                sidebar.classList.contains('open')) {
+                sidebar.classList.remove('open');
+            }
+        });
+    </script>
+</body>
+</html>
