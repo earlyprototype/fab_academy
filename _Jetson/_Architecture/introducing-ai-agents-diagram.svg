@@ -1,0 +1,600 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1495.24 640.49">
+  <defs>
+    <style>
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5 {
+        font-size: 12px;
+      }
+
+      .cls-1, .cls-6 {
+        letter-spacing: 0em;
+      }
+
+      .cls-2 {
+        letter-spacing: 0em;
+      }
+
+      .cls-7 {
+        fill: #a7a7a7;
+      }
+
+      .cls-8 {
+        font-family: NVIDIASans-Medium, 'NVIDIA Sans';
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .cls-9 {
+        fill: #828282;
+      }
+
+      .cls-3, .cls-10 {
+        font-family: NVIDIASans-Regular, 'NVIDIA Sans';
+      }
+
+      .cls-4, .cls-11 {
+        letter-spacing: -.05em;
+      }
+
+      .cls-12 {
+        fill: #f4f4f4;
+      }
+
+      .cls-13, .cls-14 {
+        font-size: 7px;
+      }
+
+      .cls-15 {
+        font-size: 15px;
+      }
+
+      .cls-15, .cls-16 {
+        font-family: NVIDIASans-Bold, 'NVIDIA Sans';
+        font-weight: 700;
+      }
+
+      .cls-17 {
+        letter-spacing: 0em;
+      }
+
+      .cls-18 {
+        letter-spacing: 0em;
+      }
+
+      .cls-19 {
+        letter-spacing: 0em;
+      }
+
+      .cls-20 {
+        letter-spacing: 0em;
+      }
+
+      .cls-21 {
+        letter-spacing: 0em;
+      }
+
+      .cls-22 {
+        letter-spacing: 0em;
+      }
+
+      .cls-23 {
+        letter-spacing: 0em;
+      }
+
+      .cls-24 {
+        letter-spacing: 0em;
+      }
+
+      .cls-25 {
+        letter-spacing: 0em;
+      }
+
+      .cls-26 {
+        letter-spacing: 0em;
+      }
+
+      .cls-27 {
+        letter-spacing: 0em;
+      }
+
+      .cls-28 {
+        letter-spacing: 0em;
+      }
+
+      .cls-29 {
+        letter-spacing: 0em;
+      }
+
+      .cls-16 {
+        font-size: 19.8px;
+      }
+
+      .cls-30 {
+        letter-spacing: -.09em;
+      }
+
+      .cls-31 {
+        letter-spacing: -.07em;
+      }
+
+      .cls-32 {
+        letter-spacing: -.08em;
+      }
+
+      .cls-33 {
+        letter-spacing: -.09em;
+      }
+
+      .cls-34 {
+        letter-spacing: -.06em;
+      }
+
+      .cls-35 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-36 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-37 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-38 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-39 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-40 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-41 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-42 {
+        letter-spacing: -.01em;
+      }
+
+      .cls-43 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-44 {
+        letter-spacing: -.01em;
+      }
+
+      .cls-45 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-46 {
+        letter-spacing: -.01em;
+      }
+
+      .cls-47 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-48 {
+        letter-spacing: -.05em;
+      }
+
+      .cls-49 {
+        letter-spacing: -.05em;
+      }
+
+      .cls-50 {
+        letter-spacing: -.04em;
+      }
+
+      .cls-51 {
+        letter-spacing: -.03em;
+      }
+
+      .cls-52 {
+        letter-spacing: -.03em;
+      }
+
+      .cls-53 {
+        letter-spacing: -.03em;
+      }
+
+      .cls-54 {
+        letter-spacing: -.03em;
+      }
+
+      .cls-55 {
+        letter-spacing: -.03em;
+      }
+
+      .cls-56 {
+        letter-spacing: -.03em;
+      }
+
+      .cls-57 {
+        fill: #76b900;
+      }
+
+      .cls-58 {
+        letter-spacing: -.03em;
+      }
+
+      .cls-59 {
+        letter-spacing: -.03em;
+      }
+
+      .cls-60 {
+        letter-spacing: 0em;
+      }
+
+      .cls-61 {
+        letter-spacing: 0em;
+      }
+
+      .cls-62 {
+        letter-spacing: 0em;
+      }
+
+      .cls-63 {
+        letter-spacing: 0em;
+      }
+
+      .cls-64 {
+        letter-spacing: 0em;
+      }
+
+      .cls-65 {
+        letter-spacing: 0em;
+      }
+
+      .cls-66 {
+        letter-spacing: -.01em;
+      }
+
+      .cls-67 {
+        letter-spacing: -.01em;
+      }
+
+      .cls-68 {
+        letter-spacing: 0em;
+      }
+
+      .cls-69 {
+        letter-spacing: 0em;
+      }
+
+      .cls-70 {
+        letter-spacing: 0em;
+      }
+
+      .cls-71 {
+        letter-spacing: 0em;
+      }
+
+      .cls-72 {
+        letter-spacing: 0em;
+      }
+
+      .cls-73 {
+        letter-spacing: 0em;
+      }
+
+      .cls-74 {
+        letter-spacing: 0em;
+      }
+
+      .cls-75 {
+        letter-spacing: 0em;
+      }
+
+      .cls-76 {
+        letter-spacing: 0em;
+      }
+
+      .cls-14 {
+        letter-spacing: 0em;
+      }
+
+      .cls-77 {
+        fill: #e0e0e0;
+      }
+
+      .cls-78 {
+        letter-spacing: .02em;
+      }
+
+      .cls-79 {
+        letter-spacing: .02em;
+      }
+
+      .cls-80 {
+        letter-spacing: .02em;
+      }
+
+      .cls-81 {
+        letter-spacing: .02em;
+      }
+
+      .cls-82 {
+        letter-spacing: .02em;
+      }
+
+      .cls-83 {
+        letter-spacing: .02em;
+      }
+
+      .cls-84 {
+        letter-spacing: .02em;
+      }
+
+      .cls-85 {
+        letter-spacing: .02em;
+      }
+
+      .cls-86 {
+        letter-spacing: .01em;
+      }
+
+      .cls-87 {
+        letter-spacing: .01em;
+      }
+
+      .cls-88 {
+        letter-spacing: .04em;
+      }
+
+      .cls-89 {
+        letter-spacing: 0em;
+      }
+
+      .cls-90 {
+        letter-spacing: 0em;
+      }
+
+      .cls-91 {
+        letter-spacing: 0em;
+      }
+
+      .cls-92 {
+        letter-spacing: .01em;
+      }
+
+      .cls-93 {
+        letter-spacing: 0em;
+      }
+    </style>
+  </defs>
+  <g>
+    <rect class="cls-57" x="1346.65" y="601.3" width="64.02" height="21.8"/>
+    <text class="cls-3" transform="translate(1358.75 615.73)"><tspan x="0" y="0">NVIDIA</tspan></text>
+  </g>
+  <g>
+    <rect class="cls-9" x="1420.43" y="601.3" width="64.02" height="21.8"/>
+    <text class="cls-10" transform="translate(1427.56 615.9)"><tspan class="cls-5" x="0" y="0">3</tspan><tspan class="cls-14" x="7.2" y="-3.96">R</tspan><tspan class="cls-13" x="11.74" y="-3.96">D</tspan><tspan class="cls-5" x="16.85" y="0"> </tspan><tspan class="cls-4" x="19.94" y="0">P</tspan><tspan class="cls-5" x="27.09" y="0">a</tspan><tspan class="cls-2" x="33.61" y="0">r</tspan><tspan class="cls-1" x="38.43" y="0">t</tspan><tspan class="cls-5" x="43.63" y="0">y</tspan></text>
+  </g>
+  <g>
+    <g>
+      <rect x="117.13" y="258.96" width="1" height="83.56"/>
+      <polygon points="114.14 259.98 117.63 253.94 121.12 259.98 114.14 259.98"/>
+      <polygon points="114.14 341.49 117.63 347.54 121.12 341.49 114.14 341.49"/>
+    </g>
+    <g>
+      <g>
+        <rect x="232.65" y="161.56" width="118.28" height="1"/>
+        <polygon points="349.91 158.57 355.95 162.06 349.91 165.55 349.91 158.57"/>
+        <polygon points="233.67 158.57 227.63 162.06 233.67 165.55 233.67 158.57"/>
+      </g>
+      <g>
+        <rect class="cls-12" x="9.83" y="72.9" width="215.59" height="178.32"/>
+        <g>
+          <rect class="cls-77" x="19.57" y="117.1" width="196.11" height="25.76"/>
+          <text class="cls-3" transform="translate(84.75 133.52)"><tspan x="0" y="0">NVIDIA </tspan><tspan class="cls-33" x="42.9" y="0">T</tspan><tspan class="cls-55" x="48.76" y="0">A</tspan><tspan x="56.34" y="0">O</tspan></text>
+        </g>
+        <g>
+          <rect class="cls-77" x="19.57" y="150.96" width="196.11" height="24.61"/>
+          <text class="cls-3" transform="translate(84.63 166.8)"><tspan x="0" y="0">NVIDIA NIM</tspan></text>
+        </g>
+        <g>
+          <rect class="cls-77" x="19.57" y="183.63" width="196.11" height="24.61"/>
+          <text class="cls-3" transform="translate(73.73 199.47)"><tspan x="0" y="0">NVIDIA Cosmos</tspan></text>
+        </g>
+        <g>
+          <rect class="cls-77" x="19.57" y="216.31" width="196.11" height="24.61"/>
+          <text class="cls-3" transform="translate(77.27 232.15)"><tspan x="0" y="0">NVIDIA CUO</tspan><tspan class="cls-52" x="68.32" y="0">p</tspan><tspan x="75.19" y="0">t</tspan></text>
+        </g>
+        <text class="cls-15" transform="translate(58.86 100.19)"><tspan x="0" y="0">NVIDIA AI (DGX)</tspan></text>
+      </g>
+    </g>
+    <g>
+      <g>
+        <rect x="232.65" y="436.93" width="118.28" height="1"/>
+        <polygon points="349.91 433.94 355.95 437.43 349.91 440.92 349.91 433.94"/>
+        <polygon points="233.67 433.94 227.63 437.43 233.67 440.92 233.67 433.94"/>
+      </g>
+      <g>
+        <rect class="cls-12" x="9.83" y="349" width="215.59" height="176.85"/>
+        <g>
+          <rect class="cls-77" x="19.57" y="392.2" width="196.11" height="25.76"/>
+          <text class="cls-3" transform="translate(69.42 408.62)"><tspan x="0" y="0">NVIDIA Isaac Sim</tspan></text>
+        </g>
+        <g>
+          <rect class="cls-77" x="19.57" y="425.98" width="196.11" height="24.61"/>
+          <text class="cls-3" transform="translate(70.11 441.82)"><tspan x="0" y="0">NVIDIA Isaac </tspan><tspan class="cls-73" x="74.76" y="0">L</tspan><tspan x="81.28" y="0">ab</tspan></text>
+        </g>
+        <g>
+          <rect class="cls-77" x="19.57" y="458.96" width="196.11" height="24.61"/>
+          <text class="cls-3" transform="translate(80.65 474.8)"><tspan x="0" y="0">NVIDIA Me</tspan><tspan class="cls-73" x="60.5" y="0">g</tspan><tspan x="67.64" y="0">a</tspan></text>
+        </g>
+        <g>
+          <rect class="cls-77" x="19.57" y="491.88" width="196.11" height="24.61"/>
+          <text class="cls-3" transform="translate(66.05 507.72)"><tspan x="0" y="0">NVIDIA Omni</tspan><tspan class="cls-46" x="72.83" y="0">v</tspan><tspan class="cls-17" x="78.72" y="0">e</tspan><tspan class="cls-69" x="85.34" y="0">r</tspan><tspan x="89.99" y="0">se</tspan></text>
+        </g>
+        <text class="cls-15" transform="translate(28.64 376.29)"><tspan x="0" y="0">NVIDIA Omni</tspan><tspan class="cls-54" x="94.29" y="0">v</tspan><tspan x="101.85" y="0">e</tspan><tspan class="cls-71" x="110.26" y="0">r</tspan><tspan x="116.26" y="0">se (</tspan><tspan class="cls-51" x="141.42" y="0">O</tspan><tspan x="152.4" y="0">VX)</tspan></text>
+      </g>
+    </g>
+  </g>
+  <g>
+    <g>
+      <rect class="cls-12" x="358.52" y="21.91" width="1124.39" height="554.93"/>
+      <text class="cls-16" transform="translate(827.74 57.46)"><tspan x="0" y="0">NVIDIA J</tspan><tspan class="cls-92" x="85.79" y="0">e</tspan><tspan x="97.1" y="0">tson </tspan><tspan class="cls-50" x="144.79" y="0">A</tspan><tspan x="157.78" y="0">GX</tspan></text>
+      <g>
+        <rect class="cls-9" x="368.43" y="79.17" width="1104.46" height="43.12"/>
+        <text class="cls-8" transform="translate(819.7 105.57)"><tspan class="cls-37" x="0" y="0">E</tspan><tspan x="8.04" y="0">co</tspan><tspan class="cls-60" x="23.6" y="0">s</tspan><tspan class="cls-65" x="30.72" y="0">y</tspan><tspan class="cls-22" x="38.02" y="0">s</tspan><tspan x="45.26" y="0">tem Apps and Se</tspan><tspan class="cls-87" x="157.4" y="0">r</tspan><tspan x="163.24" y="0">vices </tspan></text>
+      </g>
+      <g>
+        <rect class="cls-77" x="1294.74" y="345.99" width="320.49" height="36.03" transform="translate(1090.97 1818.99) rotate(-90)"/>
+        <text class="cls-3" transform="translate(1458.52 427.67) rotate(-90) scale(1.02 1)"><tspan x="0" y="0">J</tspan><tspan class="cls-24" x="6.71" y="0">e</tspan><tspan x="13.37" y="0">tson </tspan><tspan class="cls-53" x="41.78" y="0">P</tspan><tspan x="49.17" y="0">l</tspan><tspan class="cls-42" x="52.05" y="0">a</tspan><tspan class="cls-74" x="58.39" y="0">t</tspan><tspan class="cls-41" x="63.39" y="0">f</tspan><tspan x="68.19" y="0">o</tspan><tspan class="cls-62" x="75.13" y="0">r</tspan><tspan x="79.83" y="0">m Se</tspan><tspan class="cls-79" x="107.9" y="0">r</tspan><tspan x="112.88" y="0">vices</tspan></text>
+      </g>
+      <text class="cls-3" transform="translate(726.48 384.38)"><tspan x="0" y="0">D</tspan><tspan class="cls-73" x="8.76" y="0">i</tspan><tspan x="11.54" y="0">sk En</tspan><tspan class="cls-75" x="41.6" y="0">c</tspan><tspan class="cls-78" x="47.92" y="0">r</tspan><tspan class="cls-75" x="52.9" y="0">y</tspan><tspan class="cls-52" x="58.99" y="0">p</tspan><tspan x="65.87" y="0">tion</tspan></text>
+      <g>
+        <rect class="cls-77" x="368.43" y="203.94" width="1058.31" height="320.46"/>
+        <text class="cls-15" transform="translate(840.33 224.67)"><tspan x="0" y="0">NVIDIA J</tspan><tspan class="cls-93" x="64.98" y="0">e</tspan><tspan class="cls-28" x="73.54" y="0">t</tspan><tspan class="cls-48" x="80.26" y="0">P</tspan><tspan class="cls-19" x="89.34" y="0">ack</tspan></text>
+        <g>
+          <g>
+            <rect class="cls-12" x="378.33" y="414.68" width="1038.51" height="99.54"/>
+            <path class="cls-7" d="M1415.84,415.68v97.54H379.33v-97.54h1036.51M1416.84,414.68H378.33v99.54h1038.51v-99.54h0Z"/>
+          </g>
+          <text class="cls-8" transform="translate(838.69 435.57)"><tspan x="0" y="0">Ope</tspan><tspan class="cls-39" x="26.87" y="0">r</tspan><tspan class="cls-44" x="32.17" y="0">a</tspan><tspan x="39.7" y="0">ting </tspan><tspan class="cls-70" x="69.83" y="0">S</tspan><tspan class="cls-63" x="78.4" y="0">y</tspan><tspan class="cls-23" x="85.71" y="0">s</tspan><tspan class="cls-29" x="92.94" y="0">tem</tspan></text>
+          <g>
+            <g>
+              <rect class="cls-57" x="389.29" y="481.57" width="648.84" height="21.8"/>
+              <text class="cls-3" transform="translate(633.91 496)"><tspan class="cls-61" x="0" y="0">K</tspan><tspan x="7.76" y="0">e</tspan><tspan class="cls-64" x="14.39" y="0">r</tspan><tspan x="19.09" y="0">nel v6.8/ </tspan><tspan class="cls-75" x="69.3" y="0">R</tspan><tspan x="76.92" y="0">eal</tspan><tspan class="cls-88" x="92.94" y="0">T</tspan><tspan x="100.34" y="0">ime </tspan><tspan class="cls-61" x="123.83" y="0">K</tspan><tspan x="131.59" y="0">e</tspan><tspan class="cls-64" x="138.21" y="0">r</tspan><tspan x="142.92" y="0">nel</tspan></text>
+            </g>
+            <rect class="cls-9" x="1047.83" y="481.57" width="358.5" height="21.8"/>
+            <text class="cls-3" transform="translate(1143.66 496)"><tspan x="0" y="0">Bring </tspan><tspan class="cls-32" x="33.11" y="0">Y</tspan><tspan x="39.42" y="0">our </tspan><tspan class="cls-67" x="61.25" y="0">Ow</tspan><tspan x="79.33" y="0">n </tspan><tspan class="cls-61" x="89.6" y="0">K</tspan><tspan x="97.37" y="0">e</tspan><tspan class="cls-64" x="103.99" y="0">r</tspan><tspan x="108.7" y="0">nel (</tspan><tspan class="cls-58" x="132.11" y="0">B</tspan><tspan class="cls-55" x="139.73" y="0">Y</tspan><tspan class="cls-17" x="146.6" y="0">OK)</tspan></text>
+          </g>
+          <g>
+            <rect class="cls-57" x="389.17" y="451.01" width="377.97" height="21.8"/>
+            <text class="cls-3" transform="translate(497.16 465.44)"><tspan x="0" y="0">J</tspan><tspan class="cls-25" x="6.71" y="0">e</tspan><tspan class="cls-18" x="13.37" y="0">tson Linux (L4T) 24.04 </tspan><tspan class="cls-34" x="140.58" y="0">L</tspan><tspan x="146.41" y="0">TS</tspan></text>
+            <rect class="cls-57" x="777.17" y="451.01" width="125.41" height="21.8"/>
+            <text class="cls-3" transform="translate(813.11 465.44)"><tspan x="0" y="0">HSB Co</tspan><tspan class="cls-59" x="42.46" y="0">r</tspan><tspan class="cls-17" x="46.88" y="0">e</tspan></text>
+            <rect class="cls-9" x="912.36" y="451.01" width="160.79" height="21.8"/>
+            <text class="cls-3" transform="translate(943.13 465.44)"><tspan x="0" y="0">Canonical Ubu</tspan><tspan class="cls-46" x="80.22" y="0">n</tspan><tspan class="cls-73" x="87.21" y="0">t</tspan><tspan x="92.22" y="0">u</tspan></text>
+            <rect class="cls-9" x="1082.94" y="451.01" width="159.47" height="21.8"/>
+            <text class="cls-3" transform="translate(1148.39 465.44)"><tspan class="cls-32" x="0" y="0">Y</tspan><tspan x="6.31" y="0">o</tspan><tspan class="cls-68" x="13.25" y="0">c</tspan><tspan x="19.49" y="0">to</tspan></text>
+            <rect class="cls-9" x="1252.2" y="451.01" width="154.04" height="21.8"/>
+            <text class="cls-3" transform="translate(1301.78 465.44)"><tspan x="0" y="0">Windri</tspan><tspan class="cls-43" x="36.85" y="0">v</tspan><tspan x="42.74" y="0">er</tspan></text>
+          </g>
+        </g>
+        <g>
+          <g>
+            <rect class="cls-12" x="378.24" y="235.74" width="1038.69" height="94.62"/>
+            <path class="cls-7" d="M1415.93,236.74v92.62H379.24v-92.62h1036.69M1416.93,235.74H378.24v94.62h1038.69v-94.62h0Z"/>
+          </g>
+          <text class="cls-8" transform="translate(870.05 255.88)"><tspan x="0" y="0">AI Stack</tspan></text>
+          <g>
+            <g>
+              <rect class="cls-57" x="389.07" y="266.93" width="197.27" height="21.8"/>
+              <text class="cls-3" transform="translate(475.6 281.36)"><tspan x="0" y="0">LLM</tspan></text>
+            </g>
+            <g>
+              <rect class="cls-57" x="596.15" y="266.93" width="196.13" height="21.8"/>
+              <text class="cls-3" transform="translate(681.58 281.36)"><tspan x="0" y="0">VLM</tspan></text>
+            </g>
+            <g>
+              <rect class="cls-57" x="1212.54" y="266.93" width="193.57" height="21.8"/>
+              <text class="cls-3" transform="translate(1274.51 281.36)"><tspan x="0" y="0">CNN Models</tspan></text>
+            </g>
+            <g>
+              <rect class="cls-57" x="802.18" y="266.93" width="195.8" height="21.8"/>
+              <text class="cls-3" transform="translate(866.88 281.36)"><tspan x="0" y="0">V</tspan><tspan class="cls-82" x="7.68" y="0">L</tspan><tspan x="14.57" y="0">A Models</tspan></text>
+            </g>
+            <g>
+              <rect class="cls-57" x="1007.84" y="266.93" width="194.87" height="21.8"/>
+              <text class="cls-3" transform="translate(1049.23 281.36)"><tspan class="cls-84" x="0" y="0">V</tspan><tspan class="cls-72" x="7.86" y="0">i</tspan><tspan class="cls-26" x="10.64" y="0">sion </tspan><tspan class="cls-49" x="36.84" y="0">T</tspan><tspan class="cls-58" x="43.21" y="0">r</tspan><tspan x="47.64" y="0">an</tspan><tspan class="cls-64" x="61.33" y="0">s</tspan><tspan class="cls-40" x="67.38" y="0">f</tspan><tspan class="cls-26" x="72.18" y="0">o</tspan><tspan class="cls-64" x="79.12" y="0">r</tspan><tspan x="83.82" y="0">me</tspan><tspan class="cls-67" x="101.33" y="0">r</tspan><tspan x="105.97" y="0">s</tspan></text>
+            </g>
+            <g>
+              <rect class="cls-57" x="389.07" y="297.7" width="137.17" height="21.8"/>
+              <text class="cls-3" transform="translate(421.4 312.13)"><tspan x="0" y="0">NVDIA CU</tspan><tspan class="cls-35" x="56.05" y="0">D</tspan><tspan x="64.51" y="0">A</tspan></text>
+            </g>
+            <g>
+              <rect class="cls-57" x="535.59" y="297.7" width="137.17" height="21.8"/>
+              <text class="cls-3" transform="translate(562.83 312.13)"><tspan x="0" y="0">NVIDIA cuDNN</tspan></text>
+            </g>
+            <g>
+              <rect class="cls-57" x="682.12" y="297.7" width="137.17" height="21.8"/>
+              <text class="cls-3" transform="translate(700.57 312.13)"><tspan x="0" y="0">NVIDIA </tspan><tspan class="cls-31" x="42.9" y="0">T</tspan><tspan x="48.98" y="0">enso</tspan><tspan class="cls-91" x="75.83" y="0">r</tspan><tspan class="cls-26" x="80.65" y="0">t</tspan><tspan class="cls-72" x="85.75" y="0">R</tspan><tspan x="93.31" y="0">T</tspan></text>
+            </g>
+            <g>
+              <rect class="cls-57" x="1121.71" y="297.7" width="137.17" height="21.8"/>
+              <text class="cls-3" transform="translate(1174.35 312.13)"><tspan x="0" y="0">VLLM</tspan></text>
+            </g>
+            <g>
+              <rect class="cls-57" x="1267.53" y="297.7" width="138.58" height="21.8"/>
+              <text class="cls-3" transform="translate(1312.7 312.13)"><tspan x="0" y="0">SG</tspan><tspan class="cls-81" x="16.01" y="0">L</tspan><tspan class="cls-26" x="22.9" y="0">ANG</tspan></text>
+            </g>
+            <g>
+              <rect class="cls-57" x="828.65" y="297.7" width="137.17" height="21.8"/>
+              <text class="cls-3" transform="translate(859.22 312.13)"><tspan x="0" y="0">NVIDIA </tspan><tspan class="cls-11" x="42.9" y="0">T</tspan><tspan x="49.27" y="0">r</tspan><tspan class="cls-73" x="54.04" y="0">i</tspan><tspan x="56.82" y="0">ton</tspan></text>
+            </g>
+            <g>
+              <rect class="cls-57" x="977.12" y="297.7" width="133.29" height="21.8"/>
+              <text class="cls-3" transform="translate(1021.77 312.13)"><tspan class="cls-67" x="0" y="0">P</tspan><tspan class="cls-80" x="7.63" y="0">y</tspan><tspan x="14" y="0">to</tspan><tspan class="cls-58" x="26.04" y="0">r</tspan><tspan class="cls-26" x="30.47" y="0">ch</tspan></text>
+            </g>
+          </g>
+        </g>
+        <g>
+          <g>
+            <rect class="cls-12" x="378.28" y="340.21" width="1038.61" height="64.45"/>
+            <path class="cls-7" d="M1415.89,341.21v62.45H379.28v-62.45h1036.61M1416.89,340.21H378.28v64.45h1038.61v-64.45h0Z"/>
+          </g>
+          <text class="cls-8" transform="translate(870.3 360.51)"><tspan x="0" y="0">Secur</tspan><tspan class="cls-63" x="37.8" y="0">i</tspan><tspan class="cls-90" x="41.31" y="0">t</tspan><tspan class="cls-20" x="47.47" y="0">y</tspan></text>
+          <g>
+            <g>
+              <rect class="cls-57" x="1150.71" y="372.92" width="126.97" height="21.8"/>
+              <text class="cls-3" transform="translate(1174.2 387.35)"><tspan class="cls-56" x="0" y="0">F</tspan><tspan x="6.55" y="0">i</tspan><tspan class="cls-64" x="9.43" y="0">r</tspan><tspan class="cls-45" x="14.14" y="0">m</tspan><tspan class="cls-39" x="24.8" y="0">w</tspan><tspan x="33.85" y="0">a</tspan><tspan class="cls-58" x="40.37" y="0">r</tspan><tspan x="44.8" y="0">e T</tspan><tspan class="cls-47" x="61.49" y="0">P</tspan><tspan x="69" y="0">M</tspan></text>
+            </g>
+            <g>
+              <rect class="cls-57" x="1287.45" y="372.92" width="118.79" height="21.8"/>
+              <text class="cls-3" transform="translate(1308.03 387.35)"><tspan x="0" y="0">Mea</tspan><tspan class="cls-67" x="24.12" y="0">s</tspan><tspan x="30.11" y="0">u</tspan><tspan class="cls-58" x="37.14" y="0">r</tspan><tspan x="41.57" y="0">e </tspan><tspan class="cls-6" x="51.29" y="0">B</tspan><tspan class="cls-26" x="59.34" y="0">o</tspan><tspan class="cls-52" x="66.28" y="0">o</tspan><tspan class="cls-26" x="72.85" y="0">t</tspan></text>
+            </g>
+            <g>
+              <rect class="cls-57" x="843.16" y="372.92" width="157.77" height="21.8"/>
+              <text class="cls-3" transform="translate(866.92 386.74)"><tspan x="0" y="0">Memo</tspan><tspan class="cls-85" x="35.42" y="0">r</tspan><tspan x="40.4" y="0">y En</tspan><tspan class="cls-75" x="63.91" y="0">c</tspan><tspan class="cls-78" x="70.22" y="0">r</tspan><tspan class="cls-75" x="75.2" y="0">y</tspan><tspan class="cls-52" x="81.3" y="0">p</tspan><tspan x="88.17" y="0">tion</tspan></text>
+            </g>
+            <g>
+              <rect class="cls-57" x="1010.62" y="372.92" width="130.27" height="21.8"/>
+              <text class="cls-3" transform="translate(1030.39 387.35)"><tspan x="0" y="0">Se</tspan><tspan class="cls-68" x="14.09" y="0">c</tspan><tspan class="cls-73" x="20.33" y="0">t</tspan><tspan class="cls-17" x="25.33" y="0">u</tspan><tspan class="cls-59" x="32.36" y="0">r</tspan><tspan class="cls-17" x="36.79" y="0">e Sto</tspan><tspan class="cls-58" x="66.01" y="0">r</tspan><tspan class="cls-26" x="70.44" y="0">a</tspan><tspan class="cls-72" x="76.96" y="0">g</tspan><tspan x="84.09" y="0">e</tspan></text>
+            </g>
+            <g>
+              <rect class="cls-57" x="711.89" y="372.92" width="121.42" height="21.8"/>
+              <text class="cls-3" transform="translate(728.62 387.35)"><tspan x="0" y="0">D</tspan><tspan class="cls-73" x="8.76" y="0">i</tspan><tspan x="11.54" y="0">sk En</tspan><tspan class="cls-75" x="41.6" y="0">c</tspan><tspan class="cls-78" x="47.92" y="0">r</tspan><tspan class="cls-75" x="52.9" y="0">y</tspan><tspan class="cls-52" x="58.99" y="0">p</tspan><tspan x="65.87" y="0">tion</tspan></text>
+            </g>
+            <g>
+              <rect class="cls-57" x="389.19" y="372.92" width="100.21" height="21.8"/>
+              <text class="cls-3" transform="translate(405.16 387.35)"><tspan x="0" y="0">Secu</tspan><tspan class="cls-58" x="27.47" y="0">r</tspan><tspan x="31.9" y="0">e </tspan><tspan class="cls-6" x="41.62" y="0">B</tspan><tspan x="49.67" y="0">o</tspan><tspan class="cls-51" x="56.6" y="0">o</tspan><tspan x="63.18" y="0">t</tspan></text>
+            </g>
+            <g>
+              <rect class="cls-57" x="499.49" y="372.92" width="202.63" height="21.8"/>
+              <text class="cls-3" transform="translate(513.09 387.35)"><tspan class="cls-11" x="0" y="0">T</tspan><tspan x="6.37" y="0">r</tspan><tspan class="cls-67" x="11.14" y="0">u</tspan><tspan class="cls-64" x="18.05" y="0">s</tspan><tspan x="24.1" y="0">ted E</tspan><tspan class="cls-36" x="53.26" y="0">x</tspan><tspan x="59.21" y="0">ec</tspan><tspan class="cls-67" x="72.18" y="0">u</tspan><tspan x="79.09" y="0">tion E</tspan><tspan class="cls-45" x="111.38" y="0">n</tspan><tspan x="118.34" y="0">vi</tspan><tspan class="cls-58" x="127.29" y="0">r</tspan><tspan x="131.72" y="0">onme</tspan><tspan class="cls-46" x="163.34" y="0">n</tspan><tspan x="170.34" y="0">t</tspan></text>
+            </g>
+          </g>
+        </g>
+      </g>
+      <g>
+        <g>
+          <rect class="cls-77" x="368.43" y="144.27" width="361.52" height="37.52"/>
+          <text class="cls-8" transform="translate(506.47 168.47)"><tspan x="0" y="0">NVIDIA Isaac</tspan></text>
+        </g>
+        <g>
+          <rect class="cls-77" x="741.45" y="144.54" width="362.73" height="37.52"/>
+          <text class="cls-8" transform="translate(861.54 168.73)"><tspan x="0" y="0">NVIDIA M</tspan><tspan class="cls-89" x="64.09" y="0">et</tspan><tspan class="cls-38" x="78.16" y="0">r</tspan><tspan x="83.47" y="0">opol</tspan><tspan class="cls-63" x="111.84" y="0">i</tspan><tspan x="115.36" y="0">s</tspan></text>
+        </g>
+        <g>
+          <rect class="cls-77" x="1113.9" y="144.27" width="358.98" height="37.52"/>
+          <text class="cls-8" transform="translate(1238.15 169)"><tspan x="0" y="0">NVIDIA Holoscan</tspan></text>
+        </g>
+      </g>
+    </g>
+    <g>
+      <rect class="cls-57" x="368.43" y="546.32" width="1104.43" height="20.79"/>
+      <text class="cls-3" transform="translate(785.55 560.83)"><tspan x="0" y="0">J</tspan><tspan class="cls-21" x="6.71" y="0">e</tspan><tspan class="cls-27" x="13.37" y="0">tson GPU | CPU | D</tspan><tspan class="cls-83" x="118.15" y="0">L</tspan><tspan class="cls-27" x="125.04" y="0">A | </tspan><tspan class="cls-76" x="142.42" y="0">P</tspan><tspan class="cls-30" x="150.14" y="0">V</tspan><tspan x="156.74" y="0">A | I</tspan><tspan class="cls-66" x="177.41" y="0">P</tspan><tspan x="185.04" y="0">S | </tspan><tspan class="cls-86" x="201.91" y="0">V</tspan><tspan x="209.77" y="0">ideo Codec</tspan></text>
+    </g>
+  </g>
+</svg>
